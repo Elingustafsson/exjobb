@@ -12,3 +12,82 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  background-color: #fafafa;
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+
+.headerMenu {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  padding: 0;
+  width: 30%;
+  margin-bottom: 4px;
+}
+
+.headerMenu a {
+  color: black;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.headerMenu li {
+  margin-left: 50px;
+}
+
+
+.headerMenu li svg {
+  font-size: 10px;
+}
+
+.navLoggo {
+  height: 90px;
+  width: auto;
+}
+
+.headerItems {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  list-style: none;
+  width: 30%;
+  margin-bottom: 4px;
+}
+
+.headerItems li {
+  margin-right: 50px;
+  color: black;
+  text-decoration: none;
+  font-size: 22px;
+}
+
+.headerItems a {
+  color: black;
+}
+
+.DropDown {
+  background-color: pink;
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.DropDown h1 {
+  margin: 0 5px;
+  padding: 5px;
+  font-size: 20px;
+}
+
+.DropDown ul, .DropDown ul li {
+  list-style: none;
+  margin: 0;
+  padding: 5px;
+}
