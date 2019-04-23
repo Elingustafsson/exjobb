@@ -11,7 +11,7 @@ export default class Start extends Component {
   }
 
   componentDidMount(){
-    fetch('http://localhost:3001/products', {
+    fetch('http://localhost:3001/placeHolder', {
       method: 'GET',
       mode: 'cors'
     })
@@ -32,11 +32,20 @@ export default class Start extends Component {
   render() {
     console.log(this.state);
     return (
-      <div>
-        <p>Start</p>
-        <ul>
-          <li><Link to='/individualproduct'>Klickad produkt</Link></li>
-        </ul>
+      <div className="bodyMain">
+        <div>
+          <p>Start</p>
+        </div>
+        <div className="outerDiv">
+          {
+            (this.state.data) && (
+              this.state.data.map(function(item, i){
+                console.log('test');
+                return <div className="itemsDiv" key={i}><Link to='/individualproduct'>Klickad produkt</Link></div>
+              })
+            )
+          }
+        </div>
       </div>
     );
   }

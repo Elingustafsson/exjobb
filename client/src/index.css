@@ -13,6 +13,12 @@ code {
     monospace;
 }
 
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
 .header {
   display: flex;
   flex-direction: row;
@@ -21,6 +27,7 @@ code {
   background-color: #fafafa;
   width: 100%;
   border-bottom: 2px solid black;
+  position: static;
 }
 
 .headerMenu {
@@ -52,6 +59,16 @@ code {
   width: auto;
 }
 
+.transitionUp {
+  height: 90px;
+  transition: 1s;
+}
+
+.transitionDown {
+  height: 30px;
+  transition: 1s;
+}
+
 .headerItems {
   display: flex;
   flex-direction: row;
@@ -74,6 +91,8 @@ code {
 
 .DropDown {
   background-color: pink;
+  border: 1px solid black;
+  border-top: none;
   width: 30%;
   display: flex;
   flex-direction: row;
@@ -90,4 +109,26 @@ code {
   list-style: none;
   margin: 0;
   padding: 5px;
+}
+
+.bodyMain {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.outerDiv {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 80%;
+}
+
+.itemsDiv {
+  height: 400px;
+  margin: 10px;
+  background-color: pink;
+  width: 250px;
 }

@@ -5,7 +5,7 @@ export default class DropDown extends Component {
     return (
       <div className="DropDown">
       <div>
-      <h1>Kläder</h1>
+        <h1>Kläder</h1>
         <ul>
           <li>Tröjor</li>
           <li>Byxor</li>

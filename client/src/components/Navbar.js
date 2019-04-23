@@ -16,7 +16,10 @@ export default class Navbar extends Component {
     super()
     this.state={
       isHidden: true,
+      loggoCollapsed: true
     }
+    this.lastScroll = window.pageYOffset;
+    this.handleScroll = this.handleScroll.bind(this)
   }
 
   toggleNav() {
@@ -25,17 +28,46 @@ export default class Navbar extends Component {
     })
   }
 
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll() {
+    console.log(window.pageYOffset);
+    if (this.locked) {
+      return;
+    }
+    if (this.lastScroll < window.pageYOffset && this.state.loggoCollapsed) {
+      this.locked = true
+      setTimeout(() => {this.locked = false},1000)
+      this.setState({
+        loggoCollapsed: !this.state.loggoCollapsed
+      })
+    } else if (this.lastScroll > window.pageYOffset && !this.state.loggoCollapsed) {
+      this.locked = true
+      setTimeout(() => {this.locked = false},1000)
+      this.setState({
+        loggoCollapsed: !this.state.loggoCollapsed
+      })
+    }
+    this.lastScroll = window.pageYOffset;
+  }
+
   render() {
     return (
-      <div>
+      <div className="sticky">
         <div className="header">
           <ul className="headerMenu">
             <li onClick={this.toggleNav.bind(this)}>Kategorier <FontAwesomeIcon icon="chevron-down" /></li>
             <li><Link to='/sale'>REA</Link></li>
           </ul>
-          <Link  to='/'>
-            <img className="navLoggo" src={loggo} alt="loggo"/>
-          </Link>
+            <Link  to='/'>
+              <img className={ this.state.loggoCollapsed ? "transitionUp navLoggo" : "transitionDown navLoggo"} src={loggo} alt="loggo"/>
+            </Link>
           <ul className="headerItems">
             <li><FontAwesomeIcon icon="search" /></li>
             <li><Link to='/login'><FontAwesomeIcon icon="user" /></Link></li>
