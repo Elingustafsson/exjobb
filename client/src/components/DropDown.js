@@ -16,7 +16,7 @@ export default class DropDown extends Component {
         <div>
           <h1>Accessoarer</h1>
           <ul>
-            <li>Amycken</li>
+            <li>Smycken</li>
             <li>Väskor</li>
           </ul>
         </div>

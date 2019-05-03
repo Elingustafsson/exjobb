@@ -37,7 +37,6 @@ export default class Navbar extends Component {
   }
 
   handleScroll() {
-    console.log(window.pageYOffset);
     if (this.locked) {
       return;
     }

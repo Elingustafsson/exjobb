@@ -1,52 +1,42 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import {connect} from 'react-redux';
 
-export default class Start extends Component {
+
+
+class Start extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: null,
-      error: ""
+
     }
   }
 
-  componentDidMount(){
-    fetch('http://localhost:3001/placeHolder', {
-      method: 'GET',
-      mode: 'cors'
-    })
-    .then(response => response.json())
-    .then(response => {
-      console.log(response)
-      this.setState({
-        data: response
-      })
-    })
-    .catch(err => {
-      this.setState({
-        error: "Failed to fetch"
-      })
-    })
-  }
-
   render() {
-    console.log(this.state);
+    console.log("från render",this.props.products);
+    if (!this.props.products) {
+      return null
+    }
+
     return (
       <div className="bodyMain">
         <div>
           <p>Start</p>
         </div>
-        <div className="outerDiv">
+         <div className="outerDiv">
           {
-            (this.state.data) && (
-              this.state.data.map(function(item, i){
-                console.log('test');
-                return <div className="itemsDiv" key={i}><Link to='/individualproduct'>Klickad produkt</Link></div>
-              })
-            )
+            this.props.products.map((products, index) => {
+              return <div className="itemsDiv" key={index}><Link to={'/individualproduct' + products.id}>Namn: {products.name}</Link></div>
+            })
           }
         </div>
       </div>
     );
   }
 }
+
+
+
+const mapStateToProps = state => ({products: state.products, loading: state.loading, error: state.error})
+
+export default connect(mapStateToProps)(Start);
