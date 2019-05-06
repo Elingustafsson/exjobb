@@ -34,6 +34,7 @@ function fetchDataError() {
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
+      console.log("loading");
       return {...state, error: false, loading: true};
     case "FETCH_SUCCESS":
     console.log("updated store with data");
@@ -46,7 +47,7 @@ const reducer = (state = {}, action) => {
 }
 
 //Thunk dispatch, fungerar som setState / store.
-function fetchDataWithRedux() {
+export function fetchDataWithRedux() {
 	return (dispatch) => {
   	dispatch(fetchDataRequest());
     return fetch("http://localhost:3001/products", {method: 'GET', mode: 'cors'})
@@ -71,7 +72,7 @@ function fetchDataWithRedux() {
 
 
 //här skapas store
-const store = createStore(
+const store = createStore (
     reducer,
     applyMiddleware(thunk)
 )
@@ -88,7 +89,7 @@ let Container = connect(null, mapDispatchToProps)(App)
 
 ReactDOM.render(
     <Provider store={store}>
-        <Container/>
+      <Container/>
     </Provider>,
     document.getElementById('root')
 );
