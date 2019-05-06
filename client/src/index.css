@@ -134,3 +134,13 @@ code {
   background-color: pink;
   width: 250px;
 }
+
+.productImg {
+  height: 100px;
+  width: 100px;
+}
+
+.productImg1 {
+  height: 170px;
+  width: 160px;
+}

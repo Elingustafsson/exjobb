@@ -26,7 +26,7 @@ class Start extends Component {
          <div className="outerDiv">
           {
             this.props.products.map((products, index) => {
-              return <div className="itemsDiv" key={index}><Link to={'/individualproduct/' + products.id}>Namn: {products.name}</Link></div>
+              return <div className="itemsDiv" key={index}><Link to={'/individualproduct/' + products.id}>Namn: {products.name}</Link><img className="productImg1" alt="product" src={'http://localhost:3001' + products.img}></img></div>
             })
           }
         </div>

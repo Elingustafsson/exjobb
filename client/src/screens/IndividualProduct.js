@@ -16,6 +16,8 @@ class IndividualProduct extends Component {
         {console.log(product)}
         <p>{product.name}</p>
         <p>Pris: {product.price}</p>
+        <p>Beskrivning: {product.description}</p>
+        <img className="productImg" alt="product" src={'http://localhost:3001' + product.img}></img>
       </div>
     );
   }
