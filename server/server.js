@@ -29,14 +29,19 @@ app.post('/register', (req, res) => {
   }
 
   if (users.find( user => userData.username === user.username)) {
-    console.log('Användarnamnet finns redan, prova ett annat')
     res.sendStatus(409)
   } else {
     res.sendStatus(201)
     users.push(userData)
-    console.log('Användare skapad')
   }
-  console.log(users);
+})
+
+app.post('/login', (req, res) => {
+  if (currentUser = users.find( user => req.body.username === user.username && req.body.password === user.password)) {
+    res.status(200).json(currentUser)
+  } else {
+    res.sendStatus(400)
+  }
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
@@ -58,6 +63,6 @@ var products = [
 ]
 
 var users = [
-  {username: 'elin', password: 'elin', cart: []},
+  {username: 'elin', password: 'elin', cart: ['en vara', 'andra varan']},
   {username: 'sam', password: 'sam', cart: []}
  ]
