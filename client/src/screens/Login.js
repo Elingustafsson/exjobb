@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from "react-router-dom";
+import {connect} from 'react-redux';
+
+//Funktioner
+import {loginWithRedux} from '../index.js'
+
 
 
 const url = 'http://localhost:3001'
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props){
     super()
     this.state = {
 
     }
+    console.log(props);
   }
 
   login(e) {
@@ -42,13 +48,11 @@ export default class Login extends Component {
       }
     })
     .then(response => {
-      console.log(response.cart);
-      //till redux
+      this.props.loginWithRedux(response)
     })
     .catch(error => this.setState({
       error: "Servern är nere, prova igen senare"
     }))
-
   }
 
 
@@ -74,10 +78,10 @@ export default class Login extends Component {
         </div>
 
         { this.state.error && (
-          <div>
-            <p>{this.state.error}</p>
-          </div>
-        )
+            <div>
+              <p>{this.state.error}</p>
+            </div>
+          )
         }
 
         <ul>
@@ -87,3 +91,10 @@ export default class Login extends Component {
     );
   }
 }
+
+
+const mapDispatchToProps = {
+  loginWithRedux
+}
+
+export default connect(null, mapDispatchToProps)(Login);

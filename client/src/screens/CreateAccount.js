@@ -70,10 +70,11 @@ export default class CreateAccount extends Component {
             </form>
           </div>
           { this.state.error && (
-            <div>
-              <p>{this.state.error}</p>
-            </div>
-          )}
+              <div>
+                <p>{this.state.error}</p>
+              </div>
+            )
+          }
 
       </div>
     );

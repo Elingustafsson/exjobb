@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
 
 
-
 class Start extends Component {
   constructor(props) {
     super(props)
     this.state = {
 
     }
+    console.log(props);
   }
 
+
   render() {
-    console.log("från render",this.props.products);
     if (!this.props.products) {
       return null
     }
@@ -25,8 +25,20 @@ class Start extends Component {
         </div>
          <div className="outerDiv">
           {
-            this.props.products.map((products, index) => {
-              return <div className="itemsDiv" key={index}><Link to={'/individualproduct/' + products.id}>Namn: {products.name}<img className="productImg1" alt="product" src={'http://localhost:3001' + products.img}></img></Link></div>
+            this.props.products.map((product, index) => {
+              return <div
+                className="itemsDiv"
+                key={index}>
+                <Link
+                  to={'/individualproduct/' + product.id}>
+                  Namn: {product.name}
+                  <img
+                    className="productImg1"
+                    alt="product"
+                    src={'http://localhost:3001' + product.img}>
+                  </img>
+                </Link>
+              </div>
             })
           }
         </div>

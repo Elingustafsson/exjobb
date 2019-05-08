@@ -30,8 +30,22 @@ function fetchDataError() {
   }
 }
 
+function loginSuccess(payload) {
+  return {
+    type: "LOGIN_SUCCESS",
+    currentUser: payload
+  }
+}
+
+function addToCart(payload) {
+  return {
+    type: "ADD_ITEM",
+    itemId: payload
+  }
+}
+
 //Reducern är typ som setState. state är store
-const reducer = (state = {}, action) => {
+const reducer = (state = {cart: []}, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
       console.log("loading");
@@ -41,6 +55,22 @@ const reducer = (state = {}, action) => {
       return {...state, loading: false, products: action.data};
     case "FETCH_ERROR":
       return {...state, error: true, loading: false};
+    case "LOGIN_SUCCESS":
+    console.log("update store with username and cart");
+      return {...state, username: action.currentUser.username, cart: action.currentUser.cart};
+    case "ADD_ITEM":
+    console.log("lägg till vara");
+    if (state.username) {
+      fetch("http://localhost:3001/addToCart", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: 'post',
+        body: JSON.stringify({username: state.username, itemId: action.itemId}),
+        mode: 'cors',
+      })
+    }
+      return {...state, cart: [...state.cart, action.itemId]}
     default:
       return state;
   }
@@ -64,24 +94,30 @@ export function fetchDataWithRedux() {
   }
 }
 
-// function loggin() {
-//   return (dispatch) => {
-//     dispatch({type: "LOGGED_IN"})
-//   }
-// }
+export function loginWithRedux(payload) {
+  return (dispatch) => {
+    dispatch(loginSuccess(payload))
+  }
+}
+
+export function addItemWithRedux(payload) {
+  return (dispatch) => {
+    dispatch(addToCart(payload))
+  }
+}
 
 
 //här skapas store
 const store = createStore (
-    reducer,
-    applyMiddleware(thunk)
+  reducer,
+  applyMiddleware(thunk)
 )
 
 //För att app inte vill ha någon data
 // const mapStateToProps = state => {data: state.data}
 
 const mapDispatchToProps = {
-  fetchDataWithRedux
+  fetchDataWithRedux,
 }
 
 //om man inte skickar med några parametrar till connect så får man allt.

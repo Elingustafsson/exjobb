@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import '../../src/index.css';
 import { Link } from "react-router-dom";
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faSearch, faShoppingBag, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faSearch, faShoppingBag, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import images from '../images/images';
-import DropDown from './DropDown'
+import DropDown from './DropDown';
+import {connect} from 'react-redux';
+
 
 let {loggo} = images
 
 library.add(faUser, faSearch, faShoppingBag, faChevronDown)
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   constructor(props){
     super()
     this.state={
@@ -36,6 +38,10 @@ export default class Navbar extends Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
+  logout(){
+    window.location.reload()
+  }
+
   handleScroll() {
     if (this.locked) {
       return;
@@ -57,6 +63,7 @@ export default class Navbar extends Component {
   }
 
   render() {
+    console.log(this.props.cart);
     return (
       <div className="sticky">
         <div className="header">
@@ -69,8 +76,17 @@ export default class Navbar extends Component {
             </Link>
           <ul className="headerItems">
             <li><FontAwesomeIcon icon="search" /></li>
-            <li><Link to='/login'><FontAwesomeIcon icon="user" /></Link></li>
             <li><Link to='/cart'><FontAwesomeIcon icon="shopping-bag" /></Link></li>
+            {
+              this.props.user ? (
+                <>
+                  <li><Link to='/profile'><FontAwesomeIcon icon="user" /></Link></li>
+                  <li onClick={this.logout}>Logga ut</li>
+                </>
+              ) : (
+                <li><Link to='/login'>Login</Link></li>
+              )
+            }
           </ul>
         </div>
       <div>
@@ -84,3 +100,7 @@ export default class Navbar extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({user: state.username, cart: state.cart})
+
+export default connect(mapStateToProps)(Navbar);

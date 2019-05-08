@@ -9,8 +9,6 @@ app.use(bodyParser.json())
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-console.log(__dirname + '\\images');
-
 app.use(cors())
 
 app.get('/', (req, res) => res.send('Hello World!'))
@@ -28,6 +26,7 @@ app.post('/register', (req, res) => {
     cart: []
   }
 
+
   if (users.find( user => userData.username === user.username)) {
     res.sendStatus(409)
   } else {
@@ -42,6 +41,12 @@ app.post('/login', (req, res) => {
   } else {
     res.sendStatus(400)
   }
+})
+
+app.post('/addToCart', (req, res) => {
+  let currentUser = users.find(user => user.username === req.body.username)
+  currentUser.cart.push(req.body.itemId)
+  console.log(currentUser);
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
@@ -63,6 +68,6 @@ var products = [
 ]
 
 var users = [
-  {username: 'elin', password: 'elin', cart: ['en vara', 'andra varan']},
+  {username: 'elin', password: 'elin', cart: ['en vara', 'andra varan'], extra: {firstName: 'Elin', lastName: 'Gustafsson'}},
   {username: 'sam', password: 'sam', cart: []}
  ]
