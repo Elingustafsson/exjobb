@@ -13,22 +13,30 @@ class Cart extends Component {
     // console.log(cart);
 
     const cart = this.props.cart.map(id => {
+      console.log(this.props);
       let product = this.props.products.find(product => product.id === id)
       return (
-        <div key={id}>
-          <p>{product.name}</p>
-          <p>{product.price}</p>
+        <div className="itemSum" key={id}>
+          <img className="productImg" alt="bild" src={'http://localhost:3001' + product.img}></img>
+          <div className="itemInfo">
+            <p>Produkt namn: {product.name}</p>
+            <p>Pris: {product.price}</p>
+          </div>
         </div>
       )
     })
-    console.log(this.props.cart);
-    console.log(cart);
 
     return (
-      <div>
-        {cart}
-        <p>Varukorgen</p>
+      <>
+      <div className="cartBody">
+        <div className="itemsSummary">
+          {cart}
+        </div>
+        <div className="cartSummary">
+          <p>Beställningsöversikt</p>
+        </div>
       </div>
+      </>
     );
   }
 }

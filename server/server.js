@@ -68,6 +68,6 @@ var products = [
 ]
 
 var users = [
-  {username: 'elin', password: 'elin', cart: [], extra: {firstName: 'Elin', lastName: 'Gustafsson'}},
+  {username: 'elin', password: 'elin', cart: [3, 4, 1], extra: {firstName: 'Elin', lastName: 'Gustafsson'}},
   {username: 'sam', password: 'sam', cart: []}
  ]
