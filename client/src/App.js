@@ -5,7 +5,6 @@ import Login from './screens/Login';
 import CreateAccount from './screens/CreateAccount';
 import Cart from './screens/Cart';
 import IndividualProduct from './screens/IndividualProduct';
-import Sale from './screens/Sale';
 import Profile from './screens/Profile';
 
 import { BrowserRouter, Route } from "react-router-dom";
@@ -31,7 +30,6 @@ export default class App extends Component {
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/createaccount" component={CreateAccount} />
           <Route exact path="/individualproduct/:id" component={IndividualProduct} />
-          <Route exact path="/sale" component={Sale} />
           <Route exact path="/cart" component={() => <Cart />} />
         </>
       </BrowserRouter>

@@ -45,8 +45,24 @@ app.post('/login', (req, res) => {
 
 app.post('/addToCart', (req, res) => {
   let currentUser = users.find(user => user.username === req.body.username)
-  currentUser.cart.push(req.body.itemId)
-  console.log(currentUser);
+
+  let hit = currentUser.cart.find( item => item.id === req.body.itemId)
+  if (hit) {
+    hit.amount ++
+  } else {
+    currentUser.cart.push({id: req.body.itemId, amount: 1})
+    console.log(currentUser);
+  }
+})
+
+app.post('/removeFromCart', (req, res) => {
+  let currentUser = users.find(user => user.username === req.body.username)
+  currentUser.cart.splice(req.body.itemIdx, 1)
+})
+
+app.post('/replaceCart', (req, res) => {
+  let currentUser = users.find(user => user.username === req.body.username)
+  currentUser.cart = req.body.cart
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
@@ -68,6 +84,6 @@ var products = [
 ]
 
 var users = [
-  {username: 'elin', password: 'elin', cart: [3, 4, 1], extra: {firstName: 'Elin', lastName: 'Gustafsson'}},
+  {username: 'elin', password: 'elin', cart: [{id: 1, amount: 1}], extra: {firstName: 'Elin', lastName: 'Gustafsson'}},
   {username: 'sam', password: 'sam', cart: []}
  ]

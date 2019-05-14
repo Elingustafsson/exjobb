@@ -31,12 +31,12 @@ class Start extends Component {
                 key={index}>
                 <Link
                   to={'/individualproduct/' + product.id}>
-                  Namn: {product.name}
                   <img
                     className="productImg1"
                     alt="product"
                     src={'http://localhost:3001' + product.img}>
                   </img>
+                  <p className="itemsText">{product.name}</p>
                 </Link>
               </div>
             })

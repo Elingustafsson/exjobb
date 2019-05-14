@@ -69,7 +69,6 @@ class Navbar extends Component {
         <div className="header">
           <ul className="headerMenu">
             <li onClick={this.toggleNav.bind(this)}>Kategorier <FontAwesomeIcon icon="chevron-down" /></li>
-            <li><Link to='/sale'>REA</Link></li>
           </ul>
             <Link  to='/'>
               <img className={ this.state.loggoCollapsed ? "transitionUp navLoggo" : "transitionDown navLoggo"} src={loggo} alt="loggo"/>

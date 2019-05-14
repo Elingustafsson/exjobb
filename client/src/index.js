@@ -44,8 +44,24 @@ function addToCart(payload) {
   }
 }
 
+function removeFromCart(id) {
+  console.log("remove from cart");
+  return {
+    type: "REMOVE_ITEM",
+    itemId: id
+  }
+}
+
+function removeAmountFromCart(id) {
+  return {
+    type: "REMOVE_AMOUNT",
+    itemId: id
+  }
+}
+
 //Reducern är typ som setState. state är store
 const reducer = (state = {cart: []}, action) => {
+  console.log(action);
   switch (action.type) {
     case "FETCH_REQUEST":
       console.log("loading");
@@ -70,7 +86,54 @@ const reducer = (state = {cart: []}, action) => {
         mode: 'cors',
       })
     }
-      return {...state, cart: [...state.cart, action.itemId]}
+    let cartAdd = Object.assign([], state.cart)
+    let index = state.cart.findIndex( item => item.id === action.itemId)
+    if (index !== -1) {
+      cartAdd[index].amount++
+
+      return {...state, cart: cartAdd}
+    } else {
+      return {...state, cart: [...state.cart, {id: action.itemId, amount: 1}]}
+    }
+
+    case "REMOVE_ITEM":
+    console.log("Remove item");
+      let cart = Object.assign([], state.cart)
+      let idx = cart.findIndex(item => item.id === action.itemId)
+      cart.splice(idx, 1)
+
+      if (state.username) {
+        fetch("http://localhost:3001/removeFromCart", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: 'post',
+          body: JSON.stringify({username: state.username, itemIdx: idx}),
+          mode: 'cors',
+        })
+      }
+      return {...state, cart: cart}
+
+    case "REMOVE_AMOUNT":
+    console.log("Remove amount");
+    let cartRemove = Object.assign([], state.cart)
+    let idxRemove = cartRemove.findIndex(item => item.id === action.itemId)
+    if (cartRemove[idxRemove].amount > 1) {
+      cartRemove[idxRemove].amount--
+    } else {
+      cartRemove.splice(idxRemove, 1)
+    }
+    if (state.username) {
+      fetch("http://localhost:3001/replaceCart", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: 'post',
+        body: JSON.stringify({username: state.username, cart: cartRemove}),
+        mode: 'cors',
+      })
+    }
+    return {...state, cart: cartRemove}
     default:
       return state;
   }
@@ -103,6 +166,19 @@ export function loginWithRedux(payload) {
 export function addItemWithRedux(payload) {
   return (dispatch) => {
     dispatch(addToCart(payload))
+  }
+}
+
+export function removeItemWithRedux(id) {
+  console.log("tjoo");
+  return (dispatch) => {
+    dispatch(removeFromCart(id))
+  }
+}
+
+export function removeAmountWithRedux(id) {
+  return (dispatch) => {
+    dispatch(removeAmountFromCart(id))
   }
 }
 
