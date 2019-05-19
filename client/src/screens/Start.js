@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
+import {hostname} from '../config.js'
 
 
 class Start extends Component {
@@ -31,7 +32,7 @@ class Start extends Component {
                   <img
                     className="productImg1"
                     alt="product"
-                    src={'http://localhost:3001' + product.img}>
+                    src={`${hostname}${product.img}`}>
                   </img>
                   <p className="itemsText">{product.name}</p>
                 </Link>

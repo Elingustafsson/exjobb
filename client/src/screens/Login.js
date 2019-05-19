@@ -4,10 +4,8 @@ import {connect} from 'react-redux';
 
 //Funktioner
 import {loginWithRedux} from '../index.js'
+import {hostname} from '../config.js'
 
-
-
-const url = 'http://localhost:3001'
 
 class Login extends Component {
   constructor(props){
@@ -25,7 +23,7 @@ class Login extends Component {
       password: e.target[1].value
     }
 
-    fetch(url + '/login', {
+    fetch(`${hostname}/login`, {
       headers: {
         "Content-Type": "application/json",
       },

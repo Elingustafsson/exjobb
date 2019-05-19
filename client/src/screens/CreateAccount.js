@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from "react-router-dom";
+import {hostname} from '../config.js'
 
-const url = 'http://localhost:3001'
 
 export default class CreateAccount extends Component {
   constructor(props){
@@ -19,7 +19,7 @@ export default class CreateAccount extends Component {
     }
     console.log(userData);
 
-    fetch(url + '/register', {
+    fetch(`${hostname}/register`, {
       headers: {
         "Content-Type": "application/json",
       },

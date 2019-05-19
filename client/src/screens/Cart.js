@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import {hostname} from '../config.js'
 
 import {removeItemWithRedux, addItemWithRedux, removeAmountWithRedux} from '../index.js'
 
@@ -27,7 +28,7 @@ class Cart extends Component {
       let product = this.props.products.find(product => product.id === item.id)
       return (
         <div className="itemSum" key={item.id}>
-          <img className="productImg" alt="bild" src={'http://localhost:3001' + product.img}></img>
+          <img className="productImg" alt="bild" src={`${hostname}${product.img}`}></img>
           <div className="itemInfo">
             <p>Produkt namn: {product.name}</p>
             <p>Pris: {product.price}kr</p>

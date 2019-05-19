@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import {hostname} from './config.js'
 
 //Redux
 import {Provider, connect} from 'react-redux';
@@ -77,7 +78,7 @@ const reducer = (state = {cart: []}, action) => {
     case "ADD_ITEM":
     console.log("lägg till vara");
     if (state.username) {
-      fetch("http://localhost:3001/addToCart", {
+      fetch(`${hostname}/addToCart`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -103,7 +104,7 @@ const reducer = (state = {cart: []}, action) => {
       cart.splice(idx, 1)
 
       if (state.username) {
-        fetch("http://localhost:3001/removeFromCart", {
+        fetch(`${hostname}/removeFromCart`, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -124,7 +125,7 @@ const reducer = (state = {cart: []}, action) => {
       cartRemove.splice(idxRemove, 1)
     }
     if (state.username) {
-      fetch("http://localhost:3001/replaceCart", {
+      fetch(`${hostname}/replaceCart`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -143,7 +144,7 @@ const reducer = (state = {cart: []}, action) => {
 export function fetchDataWithRedux() {
 	return (dispatch) => {
   	dispatch(fetchDataRequest());
-    return fetch("http://localhost:3001/products", {method: 'GET', mode: 'cors'})
+    return fetch(`${hostname}/products`, {method: 'GET', mode: 'cors'})
     .then((response) => {
       if (response.status === 200) {
         return response.json()

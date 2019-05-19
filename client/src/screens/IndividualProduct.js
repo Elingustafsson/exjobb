@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
 import {addItemWithRedux} from '../index.js'
+import {hostname} from '../config.js'
+
 
 class IndividualProduct extends Component {
   constructor(props) {
@@ -31,7 +33,7 @@ class IndividualProduct extends Component {
         <p>{product.name}</p>
         <p>Pris: {product.price}</p>
         <p>Beskrivning: {product.description}</p>
-        <img className="productImg" alt="product" src={'http://localhost:3001' + product.img}></img>
+        <img className="productImg" alt="product" src={`${hostname}${product.img}`}></img>
         <button onClick={() => this.addItem(product.id)}>add</button>
       </div>
     );
