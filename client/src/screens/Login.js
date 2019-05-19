@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
+import 'whatwg-fetch'
+import 'promise-polyfill/src/polyfill';
 
 //Funktioner
 import {loginWithRedux} from '../index.js'
@@ -23,7 +25,7 @@ class Login extends Component {
       password: e.target[1].value
     }
 
-    fetch(`${hostname}/login`, {
+    window.fetch(`${hostname}/login`, {
       headers: {
         "Content-Type": "application/json",
       },

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from "react-router-dom";
 import {hostname} from '../config.js'
+import 'whatwg-fetch'
+import 'promise-polyfill/src/polyfill';
 
 
 export default class CreateAccount extends Component {
@@ -19,7 +21,7 @@ export default class CreateAccount extends Component {
     }
     console.log(userData);
 
-    fetch(`${hostname}/register`, {
+    window.fetch(`${hostname}/register`, {
       headers: {
         "Content-Type": "application/json",
       },

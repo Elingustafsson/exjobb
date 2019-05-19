@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {hostname} from './config.js'
-
+import 'whatwg-fetch'
+import 'promise-polyfill/src/polyfill';
 //Redux
 import {Provider, connect} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
@@ -78,7 +79,7 @@ const reducer = (state = {cart: []}, action) => {
     case "ADD_ITEM":
     console.log("lägg till vara");
     if (state.username) {
-      fetch(`${hostname}/addToCart`, {
+      window.fetch(`${hostname}/addToCart`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -104,7 +105,7 @@ const reducer = (state = {cart: []}, action) => {
       cart.splice(idx, 1)
 
       if (state.username) {
-        fetch(`${hostname}/removeFromCart`, {
+        window.fetch(`${hostname}/removeFromCart`, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -125,7 +126,7 @@ const reducer = (state = {cart: []}, action) => {
       cartRemove.splice(idxRemove, 1)
     }
     if (state.username) {
-      fetch(`${hostname}/replaceCart`, {
+      window.fetch(`${hostname}/replaceCart`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -144,7 +145,7 @@ const reducer = (state = {cart: []}, action) => {
 export function fetchDataWithRedux() {
 	return (dispatch) => {
   	dispatch(fetchDataRequest());
-    return fetch(`${hostname}/products`, {method: 'GET', mode: 'cors'})
+    return window.fetch(`${hostname}/products`, {method: 'GET', mode: 'cors'})
     .then((response) => {
       if (response.status === 200) {
         return response.json()
