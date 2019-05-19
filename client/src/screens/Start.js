@@ -20,9 +20,6 @@ class Start extends Component {
 
     return (
       <div className="bodyMain">
-        <div>
-          <p>Start</p>
-        </div>
          <div className="outerDiv">
           {
             this.props.products.map((product, index) => {

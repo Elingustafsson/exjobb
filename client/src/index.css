@@ -141,12 +141,13 @@ code {
 .itemsDiv {
   display: flex;
   height: auto;
-  width: 26%;
+  width: 20%;
   margin: 10px;
   border-radius: 4px;
   border: 2px solid #847b7b40;
   box-shadow: #847b7b40 0px 0px 8px 1px;
   position: relative;
+  margin-top: 5%;
 }
 
 .productImg1:hover {
