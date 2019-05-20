@@ -197,6 +197,25 @@ code {
   justify-content: flex-start;
   align-items: baseline;
 }
+.loginParent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2em;
+}
+
+.authBox {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+}
+
 
 .cartSummary {
   width: 30%;

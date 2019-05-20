@@ -63,17 +63,12 @@ class Login extends Component {
       //skrit ut att det gick, ca 1sec senare redirect.
     }
     return (
-      <div>
-        <p>Login</p>
-
-        <div>
-          <form method="post" onSubmit={e => this.login(e)}>
-            <label>Username:
-              <input type="text" name="userName"/>
-            </label>
-            <label>Password:
-              <input type="Password" name="Password"/>
-            </label>
+      <div className="loginParent">
+        <div className="authBox">
+          <p>Login</p>
+          <form className="authForm" method="post" onSubmit={e => this.login(e)}>
+              <input type="text" name="userName" placeholder="Username"/>
+              <input type="Password" name="Password" placeholder="Password"/>
             <input type="submit" value="Submit" />
           </form>
         </div>

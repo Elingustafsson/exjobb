@@ -57,17 +57,14 @@ export default class CreateAccount extends Component {
       //skrit ut att det gick, ca 1sec senare redirect.
     }
     return (
-      <div>
-        <p>Skapa konto</p>
+      <div className="loginParent">
 
-          <div>
-            <form method="post" onSubmit={ e => this.createAccount(e)}>
-              <label>Username:
-                <input required type="text" name="userName"/>
-              </label>
-              <label>Password:
-                <input required type="Password" name="Password"/>
-              </label>
+
+          <div className="authBox">
+            <p>Skapa konto</p>
+            <form className="authForm" method="post" onSubmit={ e => this.createAccount(e)}>
+              <input required type="text" placeholder="Username" name="userName"/>
+              <input required type="Password" placeholder="Password" name="Password"/>
               <input type="submit" value="Submit" />
             </form>
           </div>
