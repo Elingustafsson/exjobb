@@ -9,6 +9,8 @@ import DropDown from './DropDown';
 import {connect} from 'react-redux';
 
 import {setTypeWithRedux} from '../index.js'
+import {searchWithRedux} from '../index.js'
+
 
 
 let {loggo} = images
@@ -20,7 +22,8 @@ class Navbar extends Component {
     super()
     this.state={
       isHidden: true,
-      loggoCollapsed: true
+      loggoCollapsed: true,
+      searchClicked: false
     }
     this.lastScroll = window.pageYOffset;
     this.handleScroll = this.handleScroll.bind(this)
@@ -69,8 +72,24 @@ class Navbar extends Component {
     this.props.setTypeWithRedux(type)
   }
 
+  searchClick() {
+    if (!this.state.searchClicked) {
+      this.setState({
+        searchClicked: true
+      })
+    } else {
+      this.setState({
+        searchClicked: false
+      })
+    }
+  }
+
+  searchField(searchString) {
+    console.log(searchString);
+    this.props.searchWithRedux(searchString)
+  }
+
   render() {
-    console.log(this.props.cart);
     return (
       <div className="sticky">
         <div className="header">
@@ -84,7 +103,12 @@ class Navbar extends Component {
               alt="loggo"/>
             </Link>
           <ul className="headerItems">
-            <li><FontAwesomeIcon icon="search" /></li>
+          {
+            this.state.searchClicked && (
+              <input onKeyDown={(e) => this.searchField(e.target.value)}></input>
+            )
+          }
+            <li onClick={() => this.searchClick()}><FontAwesomeIcon icon="search" /></li>
             <li><Link to='/cart'><FontAwesomeIcon icon="shopping-bag" /></Link></li>
             {
               this.props.user ? (
@@ -113,7 +137,8 @@ class Navbar extends Component {
 const mapStateToProps = state => ({user: state.username, cart: state.cart})
 
 const mapDispatchToProps = {
-  setTypeWithRedux
+  setTypeWithRedux,
+  searchWithRedux
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

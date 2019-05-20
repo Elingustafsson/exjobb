@@ -12,9 +12,8 @@ class Start extends Component {
     }
   }
 
-
   render() {
-    console.log(this.props.selectedProductType);
+    console.log(this.props.searchField);
     if (!this.props.products) {
       return null
     }
@@ -23,8 +22,7 @@ class Start extends Component {
       <div className="bodyMain">
          <div className="outerDiv">
           {
-
-            this.props.products.filter(product => product.type.match(this.props.selectedProductType)).map((product, index) => {
+            this.props.products.filter(product => product.type.match(this.props.selectedProductType)).filter(product => (product.name.match(this.props.searchField) || product.category.match(this.props.searchField) || product.type.match(this.props.searchField))).map((product, index) => {
               return <div
                 className="itemsDiv"
                 key={index}>
@@ -47,7 +45,6 @@ class Start extends Component {
 }
 
 
-
-const mapStateToProps = state => ({products: state.products, selectedProductType: state.selectedProductType, loading: state.loading, error: state.error})
+const mapStateToProps = state => ({products: state.products, searchField: state.searchField, selectedProductType: state.selectedProductType, loading: state.loading, error: state.error})
 
 export default connect(mapStateToProps)(Start);

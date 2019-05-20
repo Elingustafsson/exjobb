@@ -68,6 +68,13 @@ function setProductType(type) {
   }
 }
 
+function searchResult(searchString) {
+  return {
+    type: "SEARCH_RESULT",
+    searchField: searchString
+  }
+}
+
 //Reducern är typ som setState. state är store
 const reducer = (state = {cart: [], selectedProductType: "/*"}, action) => {
   console.log(action);
@@ -145,8 +152,9 @@ const reducer = (state = {cart: [], selectedProductType: "/*"}, action) => {
     return {...state, cart: cartRemove}
 
     case "SET_TYPE":
-    console.log(action.productType);
       return {...state, selectedProductType: action.productType}
+    case "SEARCH_RESULT":
+      return {...state, searchField: action.searchField }
     default:
       return state;
   }
@@ -195,9 +203,14 @@ export function removeAmountWithRedux(id) {
 }
 
 export function setTypeWithRedux(type) {
-  console.log("set type");
   return (dispatch) => {
     dispatch(setProductType(type))
+  }
+}
+
+export function searchWithRedux(searchString) {
+  return (dispatch) => {
+    dispatch(searchResult(searchString))
   }
 }
 
