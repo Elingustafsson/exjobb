@@ -8,6 +8,8 @@ import images from '../images/images';
 import DropDown from './DropDown';
 import {connect} from 'react-redux';
 
+import {setTypeWithRedux} from '../index.js'
+
 
 let {loggo} = images
 
@@ -62,6 +64,11 @@ class Navbar extends Component {
     this.lastScroll = window.pageYOffset;
   }
 
+  setCategory(type) {
+    console.log(type);
+    this.props.setTypeWithRedux(type)
+  }
+
   render() {
     console.log(this.props.cart);
     return (
@@ -71,7 +78,10 @@ class Navbar extends Component {
             <li onClick={this.toggleNav.bind(this)}>Kategorier <FontAwesomeIcon icon="chevron-down" /></li>
           </ul>
             <Link  to='/'>
-              <img className={ this.state.loggoCollapsed ? "transitionUp navLoggo" : "transitionDown navLoggo"} src={loggo} alt="loggo"/>
+              <img className={ this.state.loggoCollapsed ? "transitionUp navLoggo" : "transitionDown navLoggo"}
+              src={loggo}
+              onClick={() => this.setCategory('/*')}
+              alt="loggo"/>
             </Link>
           <ul className="headerItems">
             <li><FontAwesomeIcon icon="search" /></li>
@@ -102,4 +112,8 @@ class Navbar extends Component {
 
 const mapStateToProps = state => ({user: state.username, cart: state.cart})
 
-export default connect(mapStateToProps)(Navbar);
+const mapDispatchToProps = {
+  setTypeWithRedux
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

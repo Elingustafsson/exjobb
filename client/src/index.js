@@ -61,8 +61,15 @@ function removeAmountFromCart(id) {
   }
 }
 
+function setProductType(type) {
+  return {
+    type: "SET_TYPE",
+    productType: type
+  }
+}
+
 //Reducern är typ som setState. state är store
-const reducer = (state = {cart: []}, action) => {
+const reducer = (state = {cart: [], selectedProductType: "/*"}, action) => {
   console.log(action);
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -136,6 +143,10 @@ const reducer = (state = {cart: []}, action) => {
       })
     }
     return {...state, cart: cartRemove}
+
+    case "SET_TYPE":
+    console.log(action.productType);
+      return {...state, selectedProductType: action.productType}
     default:
       return state;
   }
@@ -172,7 +183,6 @@ export function addItemWithRedux(payload) {
 }
 
 export function removeItemWithRedux(id) {
-  console.log("tjoo");
   return (dispatch) => {
     dispatch(removeFromCart(id))
   }
@@ -181,6 +191,13 @@ export function removeItemWithRedux(id) {
 export function removeAmountWithRedux(id) {
   return (dispatch) => {
     dispatch(removeAmountFromCart(id))
+  }
+}
+
+export function setTypeWithRedux(type) {
+  console.log("set type");
+  return (dispatch) => {
+    dispatch(setProductType(type))
   }
 }
 

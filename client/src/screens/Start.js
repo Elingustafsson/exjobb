@@ -10,11 +10,11 @@ class Start extends Component {
     this.state = {
 
     }
-    console.log(props);
   }
 
 
   render() {
+    console.log(this.props.selectedProductType);
     if (!this.props.products) {
       return null
     }
@@ -23,7 +23,8 @@ class Start extends Component {
       <div className="bodyMain">
          <div className="outerDiv">
           {
-            this.props.products.map((product, index) => {
+
+            this.props.products.filter(product => product.type.match(this.props.selectedProductType)).map((product, index) => {
               return <div
                 className="itemsDiv"
                 key={index}>
@@ -47,6 +48,6 @@ class Start extends Component {
 
 
 
-const mapStateToProps = state => ({products: state.products, loading: state.loading, error: state.error})
+const mapStateToProps = state => ({products: state.products, selectedProductType: state.selectedProductType, loading: state.loading, error: state.error})
 
 export default connect(mapStateToProps)(Start);

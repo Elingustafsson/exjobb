@@ -6,6 +6,7 @@ import 'promise-polyfill/src/polyfill';
 
 //Funktioner
 import {loginWithRedux} from '../index.js'
+
 import {hostname} from '../config.js'
 
 
