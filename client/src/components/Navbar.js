@@ -85,7 +85,6 @@ class Navbar extends Component {
   }
 
   searchField(searchString) {
-    console.log(searchString);
     this.props.searchWithRedux(searchString)
   }
 
@@ -109,7 +108,7 @@ class Navbar extends Component {
             )
           }
             <li onClick={() => this.searchClick()}><FontAwesomeIcon icon="search" /></li>
-            <li><Link to='/cart'><FontAwesomeIcon icon="shopping-bag" /></Link></li>
+            <li><Link to='/cart'><FontAwesomeIcon icon="shopping-bag" /></Link>{this.props.productAmount}</li>
             {
               this.props.user ? (
                 <>
@@ -134,7 +133,8 @@ class Navbar extends Component {
   }
 }
 
-const mapStateToProps = state => ({user: state.username, cart: state.cart})
+
+const mapStateToProps = state => ({user: state.username, productAmount: state.cart.reduce((acc, currentVal) => (acc + currentVal.amount ),0)})
 
 const mapDispatchToProps = {
   setTypeWithRedux,
