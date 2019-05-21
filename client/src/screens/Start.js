@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
 import {hostname} from '../config.js'
 
-
 class Start extends Component {
   constructor(props) {
     super(props)
@@ -13,7 +12,6 @@ class Start extends Component {
   }
 
   render() {
-    console.log(this.props.searchField);
     if (!this.props.products) {
       return null
     }

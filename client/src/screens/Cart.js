@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {hostname} from '../config.js'
+import { Link } from "react-router-dom";
 
 import {removeItemWithRedux, addItemWithRedux, removeAmountWithRedux} from '../index.js'
 
@@ -39,6 +40,7 @@ class Cart extends Component {
             <p>{product.name}</p>
             <p>Pris: {product.price}kr</p>
             <p>Antal: <span onClick={() => this.addAmount(product.id)}>+</span>{product.amount}<span onClick={() => this.removeAmount(product.id)}>-</span></p>
+            <p className="infoText">(Klicka på plus eller minus för att öka eller minsaka antal)</p>
             <button onClick={() => this.removeFromCart(product.id)}>Ta bort vara</button>
           </div>
         </div>
@@ -57,9 +59,16 @@ class Cart extends Component {
     })
     return (
       <>
+      {
+        cart.length === 0 ? (
+        <div className="emptyCart">
+          <h1>Oops, din varukorg är tom. Gå tillbaka till <Link to={'/'}>START</Link> och fortsätt shoppa.</h1>
+        </div>
+        )
+        :
       <div className="cartBody">
         <div className="itemsSummary">
-          {cart}
+        {cart}
         </div>
         <div className="cartSummary">
           <h1>Beställningsöversikt</h1>
@@ -86,6 +95,7 @@ class Cart extends Component {
           </table>
         </div>
       </div>
+    }
       </>
     );
   }

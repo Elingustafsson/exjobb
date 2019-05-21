@@ -52,6 +52,12 @@ code {
   background-color: #fafafa;
   border-bottom: 2px solid black;
   position: static;
+  background: repeating-linear-gradient( 520deg,
+    #fad3ff,
+    #ffefff 30px,
+    #ffffff 30px,
+    #ffbafa 30px
+  );
 }
 
 .headerMenu {
@@ -104,33 +110,44 @@ code {
 }
 
 .headerItems li {
-  margin-right: 50px;
+  margin-right: 2em;
   color: black;
   text-decoration: none;
-  font-size: 22px;
+  font-size: 1.4em;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .headerItems a {
   color: black;
+  font-weight: 600;
 }
 
 .searchFieldNav {
   margin-right: 1%;
-  border-radius: 4px;
-  border: 1px solid black;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 2px solid black;
+}
+
+.searchFieldNav::placeholder {
+  padding-left: 0.5em;
 }
 
 .DropDown {
-  background-color: #fafafa;
   border: 1px solid rgba(0,0,0, .7);
   border-top: none;
-  width: 20%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
-  position: fixed;
-  margin-left: 1%;
+  width: 100%;
+  background: white;
+}
+
+.DropDownItems {
+  display: flex;
 }
 
 .DropDown h1 {
@@ -143,6 +160,7 @@ code {
   list-style: none;
   margin: 0;
   padding: 5px;
+  cursor: pointer;
 }
 
 .bodyMain {
@@ -189,6 +207,7 @@ code {
   justify-content: center;
   align-items: flex-start;
   width: 100%;
+  margin-top: 3%;
 }
 
 .invImg {
@@ -239,6 +258,12 @@ code {
   text-align: center;
 }
 
+.emptyCart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .itemsSummary {
   width: 60%;
   display: flex;
@@ -267,7 +292,13 @@ code {
 }
 
 .itemInfo p:first-child {
-  font-size: 2em;
+  font-size: 1.8em;
+  font-weight: 500;
+  text-align: left;
+}
+
+.infoText {
+  font-size: 11px !important;
 }
 
 .itemInfo button {
@@ -367,4 +398,36 @@ span {
 
 .tdCenter {
   text-align: center;
+}
+
+.activeTest {
+  font-weight: bold;
+  text-decoration: underline black solid;
+}
+
+.confirmation {
+  background-color: black;
+  color: white;
+  font-weight: 500;
+  font-size: 1em;
+  width: 100%;
+  padding: 1em 0;
+  display: flex;
+  justify-content: center;
+  display: none;
+  position: absolute;
+  letter-spacing: 3px;
+}
+
+.animation {
+  display: flex;
+  animation-name: example;
+  animation-duration: 5s;
+}
+
+@keyframes example {
+  0%   { width: 0}
+  5% { width: 100%}
+  95% { width: 100%}
+  100% { width: 0}
 }

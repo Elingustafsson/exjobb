@@ -9,14 +9,18 @@ class IndividualProduct extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
+      confirmation: false
     }
-    console.log(props);
   }
-
 
   addItem(id) {
     this.props.addItemWithRedux(id)
+    this.setState({
+      confirmation: true
+    })
+    setTimeout(() => this.setState({
+      confirmation: false
+    }), 4000)
   }
 
   render() {
@@ -28,6 +32,8 @@ class IndividualProduct extends Component {
     const product = this.props.products.find( product => product.id === Number(this.props.match.params.id))
 
     return (
+      <>
+      <div className={this.state.confirmation ? "confirmation animation" : "confirmation"}>Produkt tillagd!</div>
       <div className="invBody">
         <div className="invImg">
           <img className="productImg" alt="product" src={`${hostname}${product.img}`}></img>
@@ -39,6 +45,7 @@ class IndividualProduct extends Component {
           <button className="addButton" onClick={() => this.addItem(product.id)}>Lägg till produkt</button>
         </div>
       </div>
+      </>
     );
   }
 }

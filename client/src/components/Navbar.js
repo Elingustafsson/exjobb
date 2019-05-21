@@ -3,10 +3,11 @@ import '../../src/index.css';
 import { Link } from "react-router-dom";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faSearch, faShoppingBag, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faSearch, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import images from '../images/images';
-import DropDown from './DropDown';
 import {connect} from 'react-redux';
+import DropDown from './DropDown';
+
 
 import {setTypeWithRedux} from '../index.js'
 import {searchWithRedux} from '../index.js'
@@ -15,7 +16,7 @@ import {searchWithRedux} from '../index.js'
 
 let {loggo} = images
 
-library.add(faUser, faSearch, faShoppingBag, faChevronDown)
+library.add(faUser, faSearch, faShoppingBag)
 
 class Navbar extends Component {
   constructor(props){
@@ -27,12 +28,7 @@ class Navbar extends Component {
     }
     this.lastScroll = window.pageYOffset;
     this.handleScroll = this.handleScroll.bind(this)
-  }
-
-  toggleNav() {
-    this.setState({
-      isHidden: !this.state.isHidden,
-    })
+    console.log("heeej", props);
   }
 
   componentDidMount() {
@@ -93,7 +89,6 @@ class Navbar extends Component {
       <div className="sticky">
         <div className="header">
           <ul className="headerMenu">
-            <li onClick={this.toggleNav.bind(this)}>Kategorier <FontAwesomeIcon icon="chevron-down" /></li>
           </ul>
             <Link  to='/'>
               <img className={ this.state.loggoCollapsed ? "transitionUp navLoggo" : "transitionDown navLoggo"}
@@ -121,13 +116,13 @@ class Navbar extends Component {
             }
           </ul>
         </div>
-      <div>
-        {
-          !this.state.isHidden && (
-            <DropDown />
-          )
-        }
+        <div>
       </div>
+      {
+        this.props.location.pathname === "/" && (
+          <DropDown />
+        )
+      }
     </div>
     );
   }

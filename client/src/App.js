@@ -25,12 +25,12 @@ export default class App extends Component {
       <BrowserRouter>
         <>
           <Route path="/" component={Navbar}/>
+          <Route exact path="/individualproduct/:id" component={IndividualProduct} />
           <main>
             <Route exact path="/" component={Start} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/createaccount" component={CreateAccount} />
-            <Route exact path="/individualproduct/:id" component={IndividualProduct} />
             <Route exact path="/cart" component={() => <Cart />} />
           </main>
         </>
