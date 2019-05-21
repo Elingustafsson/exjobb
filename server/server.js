@@ -23,7 +23,8 @@ app.post('/register', (req, res) => {
   var userData = {
     username: req.body.username,
     password: req.body.password,
-    cart: []
+    cart: [],
+    personalInfo: {phone: "", address: "", city: "", country: "", postalno: "", firstname: "", lastname: ""}
   }
 
 
@@ -65,6 +66,24 @@ app.post('/replaceCart', (req, res) => {
   currentUser.cart = req.body.cart
 })
 
+app.post('/personalInfo', (req, res) => {
+  let currentUser = users.find(user => user.username === req.body.username)
+  Object.keys(currentUser.personalInfo).forEach(key => {
+    currentUser.personalInfo[key] = req.body[key]
+  })
+  console.log(currentUser);
+})
+
+app.get('/personalInfo/:username', (req,res) => {
+  console.log("hej")
+  let currentUser = users.find(user => user.username === req.params.username)
+  if(currentUser) {
+    res.json(currentUser.personalInfo)
+  } else {
+    res.json(404)
+  }
+})
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 
@@ -84,6 +103,5 @@ var products = [
 ]
 
 var users = [
-  {username: 'elin', password: 'elin', cart: [{id: 1, amount: 1}], extra: {firstName: 'Elin', lastName: 'Gustafsson'}},
-  {username: 'sam', password: 'sam', cart: []}
+  {username: 'elin', password: 'elin', cart: [{id: 1, amount: 1}], personalInfo: {phone: "", address: "", city: "", country: "", postalno: "", firstname: "Elin", lastname: "Gustafsson"}},
  ]
