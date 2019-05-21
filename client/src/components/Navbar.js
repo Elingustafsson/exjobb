@@ -104,7 +104,7 @@ class Navbar extends Component {
           <ul className="headerItems">
           {
             this.state.searchClicked && (
-              <input onKeyDown={(e) => this.searchField(e.target.value)}></input>
+              <input className="searchFieldNav" placeholder="Sök produkt, namn, typ" onKeyDown={(e) => this.searchField(e.target.value)}></input>
             )
           }
             <li onClick={() => this.searchClick()}><FontAwesomeIcon icon="search" /></li>

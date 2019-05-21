@@ -28,13 +28,16 @@ class IndividualProduct extends Component {
     const product = this.props.products.find( product => product.id === Number(this.props.match.params.id))
 
     return (
-      <div>
-        {console.log(product)}
-        <p>{product.name}</p>
-        <p>Pris: {product.price}</p>
-        <p>Beskrivning: {product.description}</p>
-        <img className="productImg" alt="product" src={`${hostname}${product.img}`}></img>
-        <button onClick={() => this.addItem(product.id)}>add</button>
+      <div className="invBody">
+        <div className="invImg">
+          <img className="productImg" alt="product" src={`${hostname}${product.img}`}></img>
+        </div>
+        <div className="invDescription">
+          <h1>{product.name}</h1>
+          <p>Pris: <b>{product.price} kr</b></p>
+          <p>Beskrivning: {product.description}</p>
+          <button className="addButton" onClick={() => this.addItem(product.id)}>Lägg till produkt</button>
+        </div>
       </div>
     );
   }

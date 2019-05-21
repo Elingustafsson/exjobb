@@ -16,7 +16,6 @@ class Login extends Component {
     this.state = {
 
     }
-    console.log(props);
   }
 
   login(e) {
@@ -65,11 +64,11 @@ class Login extends Component {
     return (
       <div className="loginParent">
         <div className="authBox">
-          <p>Login</p>
+          <h1>Login</h1>
           <form className="authForm" method="post" onSubmit={e => this.login(e)}>
-              <input type="text" name="userName" placeholder="Username"/>
-              <input type="Password" name="Password" placeholder="Password"/>
-            <input type="submit" value="Submit" />
+              <input className="authInput" type="text" name="userName" placeholder="Användarnamn"/>
+              <input className="authInput" type="Password" name="Password" placeholder="Lösenord"/>
+            <input className="authButton" type="submit" value="Logga in" />
           </form>
         </div>
 
@@ -79,10 +78,11 @@ class Login extends Component {
             </div>
           )
         }
-
-        <ul>
-          <li><Link to='/createaccount'>Skapa konto</Link></li>
-        </ul>
+        <div className="createAcc">
+          <p>Har du inget konto?</p>
+          <p> Du kan du enkelt skapa ett genom att trycka på länken "Skapa konto" nedan</p>
+          <p><Link to='/createaccount'>Skapa konto</Link></p>
+        </div>
       </div>
     );
   }

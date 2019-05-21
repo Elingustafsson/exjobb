@@ -6,6 +6,21 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #fafafa;
+}
+
+main {
+  margin-top: 3%;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+  padding-bottom: 1em;
+}
+
+hr {
+  width: 100%;
 }
 
 a {
@@ -35,7 +50,6 @@ code {
   justify-content: space-between;
   align-items: flex-end;
   background-color: #fafafa;
-  width: 100%;
   border-bottom: 2px solid black;
   position: static;
 }
@@ -100,15 +114,23 @@ code {
   color: black;
 }
 
+.searchFieldNav {
+  margin-right: 1%;
+  border-radius: 4px;
+  border: 1px solid black;
+}
+
 .DropDown {
   background-color: #fafafa;
   border: 1px solid rgba(0,0,0, .7);
   border-top: none;
-  width: 30%;
+  width: 20%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+  position: fixed;
+  margin-left: 1%;
 }
 
 .DropDown h1 {
@@ -147,11 +169,11 @@ code {
   border: 2px solid #847b7b40;
   box-shadow: #847b7b40 0px 0px 8px 1px;
   position: relative;
-  margin-top: 5%;
+  background-color: white;
 }
 
-.productImg1:hover {
-  filter: blur(2px);
+.itemsDiv:hover {
+  transform: scale(1.05);
 }
 
 .itemsText {
@@ -162,15 +184,53 @@ code {
   color: black;
 }
 
+.invBody {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.invImg {
+  height: 30em;
+}
+
+.productImg {
+  height: 24em;
+  width: 20em;
+  border-radius: 4px;
+  border: 2px solid #847b7b40;
+  box-shadow: #847b7b40 0px 0px 8px 1px;
+}
+
+.invDescription {
+  display: flex;
+  height: auto;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 5%;
+  width: 20%;
+}
+
+.invDescription p {
+  margin-bottom: 0.5em;
+}
+
+.addButton {
+  margin-top: 20%;
+  width: 85%;
+  padding: 7% 0;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
 .productImg1 {
   height: 80%;
   width: 100%;
   border-radius: 4px 4px 0 0;
-}
-
-.productImg {
-  height: 170px;
-  width: 160px;
 }
 
 .cartBody {
@@ -180,7 +240,7 @@ code {
 }
 
 .itemsSummary {
-  width: 70%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   margin-left: 50px;
@@ -196,30 +256,115 @@ code {
   flex-direction: column;
   justify-content: flex-start;
   align-items: baseline;
+  padding-left: 2em;
+  padding-top: 1em;
+  width: 25%;
 }
+
+.itemInfo p {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.itemInfo p:first-child {
+  font-size: 2em;
+}
+
+.itemInfo button {
+  margin-top: 20%;
+  width: 85%;
+  padding: 7% 0;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
 .loginParent {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 2em;
+  margin: 2em 2em 2em 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .authBox {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
   text-align: center;
+  border-radius: 4px;
+  border: 2px solid #847b7b40;
+  box-shadow: #847b7b40 0px 0px 8px 1px;
+  padding-top: 1em;
 }
 
 .authForm {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
+.authInput {
+  border-radius: 4px;
+  border: 1px solid grey;
+  padding: 0.5em;
+  margin: 0 3em;
+  margin-bottom: 0.5em;
+}
+
+.authButton {
+  width: 90%;
+  padding: 5% 0;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  margin: 2em 0;
+}
+
+.createAcc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1em;
+}
 
 .cartSummary {
-  width: 30%;
-  height: 100px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   border: 1px solid black;
-  margin: 20px;
+  text-align: left;
+  padding: 10px;
+  position: sticky;
+  top: 20%;
+  border-radius: 4px;
+  border: 2px solid #847b7b40;
+  box-shadow: #847b7b40 0px 0px 8px 1px;
+}
+
+.customTd {
+  max-width: 70%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.amountBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+span {
+  font-size: 1.3em;
+}
+
+.tdCenter {
+  text-align: center;
 }
